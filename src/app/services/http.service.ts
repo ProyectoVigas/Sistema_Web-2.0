@@ -6,6 +6,8 @@ import { NavigationExtras, Router } from "@angular/router";
 
 //primeng services
 import {MessageService} from 'primeng/api';
+import { AuthService } from './auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,14 @@ import {MessageService} from 'primeng/api';
 
 export class HttpService{
     private apiUrl : string = "http://129.146.118.224:9001/";
+    // private apiUrl : string = "https://localhost:44305/";
 
-    constructor(private http: HttpClient,private message:MessageService, private router: Router) {}
+    constructor(
+      private http: HttpClient,
+      private auth: AuthService,
+      private message:MessageService, 
+      private cookies: CookieService,
+      private router: Router) {}
 
   public async post(method:string,payload:any = {}) : Promise<any>{
     // if(!this.auth.validateToken()) this.router.navigate(['/unauthorized']);
@@ -72,5 +80,33 @@ export class HttpService{
     });
   }
 
+  public async login(NumEmpleado: string, password: string): Promise<boolean> {
+    let res = await this.post('Usuarios/login', { NumEmpleado, password });
+    console.log('res');
+    console.log(res);
+    console.log(res.error);
+    if (res && !res.error) {
+      this.auth.token = res.token;
+      this.auth.setToken(res.token);
+
+      this.router.navigateByUrl('informacion');
+      this.message.add({
+        severity: 'success',
+        summary: 'Bienvenido!',
+        detail: res.message,
+        life: 5000,
+      });
+      return true;
+    } else {
+      console.log(res.message);
+      this.message.add({
+        severity: 'error',
+        summary: 'Fallo al iniciar sesión =(',
+        detail: res.message,
+        life: 5000,
+      });
+      return false;
+    }
+  }
 
 }

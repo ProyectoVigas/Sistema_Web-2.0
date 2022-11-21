@@ -15,6 +15,9 @@ import { ObraComponent } from './pages/obra/obra.component';
 import { EmpleadoComponent } from './pages/empleado/empleado.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { CodigoQRComponent } from './pages/codigo-qr/codigo-qr.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -33,13 +36,14 @@ import { CodigoQRComponent } from './pages/codigo-qr/codigo-qr.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NgxQRCodeModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent }
 
     ])
   ],
-  providers: [],
+  providers: [CookieService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
