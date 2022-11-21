@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
+import {Router} from '@angular/router';
 import { REGEX_EMAIL } from '../../utils/regular-expressions.utils';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpService,
+    private router:Router
 
   ) { 
     this.form = this.formBuilder.group({

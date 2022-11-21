@@ -89,7 +89,7 @@ export class HttpService{
       this.auth.token = res.token;
       this.auth.setToken(res.token);
 
-      this.router.navigateByUrl('informacion');
+      this.router.navigateByUrl('menu');
       this.message.add({
         severity: 'success',
         summary: 'Bienvenido!',
