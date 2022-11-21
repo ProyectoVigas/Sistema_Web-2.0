@@ -18,6 +18,7 @@ import { CodigoQRComponent } from './pages/codigo-qr/codigo-qr.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MessageService } from 'primeng/api';
     ReactiveFormsModule,
     HttpClientModule,
     NgxQRCodeModule,
+    ButtonModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent }
 

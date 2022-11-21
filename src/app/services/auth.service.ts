@@ -63,4 +63,9 @@ export class AuthService {
       return false;
     }
   }
+
+  clearCredentials() {
+    this.setToken(null);
+  }
+  
 }
