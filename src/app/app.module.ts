@@ -18,6 +18,10 @@ import { CodigoQRComponent } from './pages/codigo-qr/codigo-qr.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {ButtonModule} from 'primeng/button';
 
 @NgModule({
@@ -36,16 +40,19 @@ import {ButtonModule} from 'primeng/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxQRCodeModule,
+    ToastModule,
+    DynamicDialogModule,
     ButtonModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent }
 
     ])
   ],
-  providers: [CookieService, MessageService],
+  providers: [CookieService, MessageService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
