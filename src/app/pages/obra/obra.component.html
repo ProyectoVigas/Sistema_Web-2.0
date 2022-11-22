@@ -1,13 +1,13 @@
 <div class="w3-container">
-    <form class="custom-form" method="post">
+    <form class="custom-form" [formGroup]="form" method="post">
       <h1>Generar Obra</h1>
       <br>
       <span>Nombre de la Obra:</span>
-      <input type="text" name="nomObra" placeholder="Nombre de la Obra" required="required" />
+      <input formControlName="NomObra" name="nomObra" placeholder="Nombre de la Obra" required="required" />
       <span>Número de Empleado:</span>
-      <input type="number" name="numEmpleado" placeholder="Número de Empleado" required="required" />
+      <input formControlName="NumEmpleado" name="numEmpleado" placeholder="Número de Empleado" />
       <span>Cantidad de Vigas:</span>
-      <input type="number" name="cantidadVigas" placeholder="Cantidad de Vigas" required="required" />
+      <input formControlName="CantidadVigas" name="cantidadVigas" placeholder="Cantidad de Vigas" required="required" />
   
       <button class="register-btn" (click)="GuardarObra()">Guardar Obra</button>
       <br>

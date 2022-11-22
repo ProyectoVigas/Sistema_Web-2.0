@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
-import { FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import Obra from 'src/app/models/obra.model';
 
 
@@ -10,6 +11,7 @@ import Obra from 'src/app/models/obra.model';
   styleUrls: ['./obra.component.scss']
 })
 export class ObraComponent implements OnInit {
+  form: FormGroup;
   // validacionesForm = new FormGroup({
   //   NomObra: new FormControl(' ', Validators.compose([Validators.required,Validators.pattern(/^[\S][/,.,-,Á,É,Í,Ó,Ú,Ñ,á,é,í,ó,ú,ñ,a-zA-Z0-9 ]+$/)])),
   //   NumEmpleado: new FormControl(' ', Validators.compose([Validators.required,Validators.pattern(/^\d+$/)])),
@@ -20,7 +22,7 @@ export class ObraComponent implements OnInit {
     CantidadVigas: ''
   }
   nomobra: string='';
-  constructor(private http : HttpService ) { }
+  constructor(private http : HttpService, private formBuilder: FormBuilder, ) { }
 
   ngOnInit(): void {
   }
