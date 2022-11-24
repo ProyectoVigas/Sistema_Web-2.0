@@ -12,17 +12,17 @@ import Obra from 'src/app/models/obra.model';
 })
 export class ObraComponent implements OnInit {
   form: FormGroup;
-  // validacionesForm = new FormGroup({
-  //   NomObra: new FormControl(' ', Validators.compose([Validators.required,Validators.pattern(/^[\S][/,.,-,Á,É,Í,Ó,Ú,Ñ,á,é,í,ó,ú,ñ,a-zA-Z0-9 ]+$/)])),
-  //   NumEmpleado: new FormControl(' ', Validators.compose([Validators.required,Validators.pattern(/^\d+$/)])),
-  //   CantidadVidas: new FormControl(' ', Validators.compose([Validators.required,Validators.pattern(/^\d+$/)]))
-  // })
+  
   obra: Obra={
     NomObra: '',
     CantidadVigas: ''
   }
   nomobra: string='';
-  constructor(private http : HttpService, private formBuilder: FormBuilder, ) { }
+  constructor(private http : HttpService, private formBuilder: FormBuilder, ) { 
+    this.form = this.formBuilder.group({
+      NumEmpleado: [1],
+      password: ['Martin', [Validators.required]],
+    });}
 
   ngOnInit(): void {
   }
