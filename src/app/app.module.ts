@@ -21,8 +21,11 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
+import { LoadingComponent } from './pages/utils/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import {ButtonModule} from 'primeng/button';
     NavigateComponent,
     ObraComponent,
     EmpleadoComponent,
-    CodigoQRComponent
+    CodigoQRComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,12 +51,11 @@ import {ButtonModule} from 'primeng/button';
     ToastModule,
     DynamicDialogModule,
     ButtonModule,
-    RouterModule.forRoot([
-      { path: '', component: LoginComponent }
-
-    ])
+    MatProgressSpinnerModule,
+    ProgressSpinnerModule,
+    RouterModule.forRoot([{ path: '', component: LoginComponent }]),
   ],
   providers: [CookieService, MessageService, DialogService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
