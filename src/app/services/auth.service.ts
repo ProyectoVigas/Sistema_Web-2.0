@@ -5,7 +5,6 @@ import { skip } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import User from '../models/user.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -43,7 +42,7 @@ export class AuthService {
   }
   parseUser(userFromToken: any): User {
     return {
-      NumEmpleado: userFromToken['NumEmpleado'],
+      NumEmpleado: parseInt(userFromToken['NumEmpleado']),
       NomEmpleado: userFromToken['NomEmpleado'],
       Apaterno: userFromToken['Apaterno'],
       Amaterno: userFromToken['Amaterno'],
@@ -64,8 +63,16 @@ export class AuthService {
     }
   }
 
+  getUser(): User {
+    let token = this.token;
+    try {
+      let user: any = jwt_decode(token);
+      return this.parseUser(user);
+    } catch (err) {
+      return {};
+    }
+  }
   clearCredentials() {
     this.setToken(null);
   }
-  
 }
