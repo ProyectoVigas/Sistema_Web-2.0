@@ -37,8 +37,13 @@ export class ObraComponent implements OnInit {
   ngOnInit(): void {}
 
   GuardarObra() {
-    this.user = this.auth.getUser();
-    console.log(this.user);
+    if (this.form.invalid) {
+      console.log('invalid');
+      return;
+    } else{
+      console.log('valid');
+      console.log(this.user);
+      this.user = this.auth.getUser();
     let obras = this.form.value;
     this.loading.show();
 
@@ -50,5 +55,6 @@ export class ObraComponent implements OnInit {
     this.http.put('Obra', this.obra).then((res) => {
       this.loading.close();
     });
+  }
   }
 }

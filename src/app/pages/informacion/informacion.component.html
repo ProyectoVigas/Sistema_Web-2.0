@@ -1,29 +1,42 @@
 <div class="w3-container">
-    <form class="custom-form" method="post">
+    <form class="custom-form" [formGroup]="form" method="post">
       <h1>Información</h1>
       <br>
-      <span>Clave de obra:</span>
-      <input type="id" name="clvObra" placeholder="Clave de obra" required="required" />
-      <span>Clave de la Viga:</span>
-      <input type="id" name="clvViga" placeholder="Clave de la Viga" required="required" />
-      <span>Largo de la Viga(mts):</span>
-      <input type="number" name="largoViga" placeholder="Largo de la Viga" required="required" />
-      <span>Peso de la Viga(kg):</span>
-      <input type="number" name="pesoViga" placeholder="Peso de la Viga" required="required" />
-      <span>Material:</span>
-      <input type="text" name="material" placeholder="Material" required="required" />
-      <span>Número de Empleado:</span>
-      <input type="text" name="numEmpleado" placeholder="NumEmpleado" required="required" />
-      <span>Fecha de Registro de la Viga:</span>
-      <input type="date" name="fechaViga" placeholder="Fecha de Registro de la Viga" required="required" />
+      
+      <!-- Obras -->
+      
+      <div class="input-group">
+      <span class="p-float-label">Clave de la Viga:</span>
+      <input type="id" formControlName="ClvViga" name="ClvViga" placeholder="Clave de la Viga" required="required" />
+      
+    </div>
+    <button type="button" class="btn btn-primary"(click)="BuscarViga()">
+      Buscar viga
+    </button>
+      <span>Obra</span>
+      <div class="p-field p-col-12 p-md-2">
+        <span>
+          <p-dropdown  [options]="combos.Obra" formControlName="clvObra" optionLabel="nomObra" optionValue="clvObra"
+            [filter]="true" emptyFilterMessage="Sin resultados..." filterBy="nomObra" [showClear]="true"
+            placeholder="Selecciona obra"></p-dropdown>
+        </span>
+      </div>
+      <!-- <span>Clave de obra:</span>
+      <input type="id" name="clvObra" placeholder="Clave de obra" required="required" /> -->
+      <span class="p-float-label">Largo de la Viga(mts):</span>
+      <input type="number" formControlName="LargoViga" name="largoViga" placeholder="Largo de la Viga" required="required" />
+      <span class="p-float-label">Peso de la Viga(kg):</span>
+      <input type="number" formControlName="PesoViga" name="pesoViga" placeholder="Peso de la Viga" required="required" />
+      <span class="p-float-label">Material:</span>
+      <input type="text" formControlName="Material" name="material" placeholder="Material" required="required" />
   
   
   
-      <button type="submit" class="register-btn">Guardar</button>
+      <button class="register-btn" (click)="GuardarViga()">Guardar</button>
       <br>
-      <button type="submit" class="register-btn" routerLink="/menu">Cancelar</button>
+      <button class="register-btn" routerLink="/menu">Cancelar</button>
       <br>
-      <button type="submit" class="register-btn" routerLink="/codigo-qr">Imprimir código QR</button>
+      <button class="register-btn" routerLink="/codigo-qr">Imprimir código QR</button>
   
     </form>
   </div>

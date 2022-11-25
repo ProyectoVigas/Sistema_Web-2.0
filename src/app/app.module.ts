@@ -26,6 +26,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { ButtonModule } from 'primeng/button';
 import { LoadingComponent } from './pages/utils/loading/loading.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LoadingComponent } from './pages/utils/loading/loading.component';
     ButtonModule,
     MatProgressSpinnerModule,
     ProgressSpinnerModule,
+    DropdownModule,
     RouterModule.forRoot([{ path: '', component: LoginComponent }]),
   ],
   providers: [CookieService, MessageService, DialogService],
