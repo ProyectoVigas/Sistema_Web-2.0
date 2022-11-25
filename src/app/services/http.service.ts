@@ -12,8 +12,8 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class HttpService {
-  // private apiUrl: string = 'http://129.146.118.224:9001/';
-  private apiUrl: string = 'https://localhost:44305/';
+  private apiUrl: string = 'http://129.146.118.224:9001/';
+  // private apiUrl: string = 'https://localhost:44305/';
 
   constructor(
     private http: HttpClient,
