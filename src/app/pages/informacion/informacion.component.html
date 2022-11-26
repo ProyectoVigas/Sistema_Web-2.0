@@ -32,7 +32,7 @@
   
   
   
-      <button [disabled]="clvObra==0" class="register-btn" (click)="GuardarViga()">Guardar</button>
+      <button [disabled]="clvObra!=0" class="register-btn" (click)="GuardarViga()">Guardar</button>
       <br>
       <button class="register-btn" routerLink="/menu">Cancelar</button>
       <br>

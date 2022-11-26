@@ -6,6 +6,7 @@ import Obra from 'src/app/models/obra.model';
 import User from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-obra',
@@ -26,11 +27,12 @@ export class ObraComponent implements OnInit {
     private http: HttpService,
     private formBuilder: FormBuilder,
     private auth: AuthService,
+    private message: MessageService,
     private loading: LoadingService
   ) {
     this.form = this.formBuilder.group({
-      NomObra: ['Prueba 2', [Validators.required]],
-      CantidadVigas: [10, [Validators.required]],
+      NomObra: ['', [Validators.required]],
+      CantidadVigas: [0, [Validators.required]],
     });
   }
 
@@ -39,6 +41,12 @@ export class ObraComponent implements OnInit {
   GuardarObra() {
     if (this.form.invalid) {
       console.log('invalid');
+      this.message.add({
+        severity: 'error',
+        summary: 'Ingrese todos los campos',
+        detail: '',
+        life: 5000,
+      });
       return;
     } else{
       console.log('valid');
@@ -54,6 +62,13 @@ export class ObraComponent implements OnInit {
     console.log(this.obra);
     this.http.put('Obra', this.obra).then((res) => {
       this.loading.close();
+      this.form.reset();
+      this.message.add({
+        severity: 'success',
+        summary: 'Viga guardada correctamente!!',
+        detail: '',
+        life: 5000,
+      });
     });
   }
   }

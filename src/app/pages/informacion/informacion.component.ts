@@ -18,7 +18,7 @@ export class InformacionComponent implements OnInit {
   clvObra: number = 0;
   user: User = {};
   viga: Viga = {};
-  isDisabled = false;
+  isDisabled = true;
   desViga: string = '';
 
   combos: any = {
@@ -54,8 +54,6 @@ export class InformacionComponent implements OnInit {
   }
   getCombos(filter: string) {
     this.http.get(`${filter}`).then(res => {
-      console.log('res');
-      console.log(res);
       if (res && !res.error) {
         this.combos[filter] = res;
         this.loading.close();
@@ -122,6 +120,16 @@ export class InformacionComponent implements OnInit {
   }
 
   SendQR(){
+    if (this.form.invalid) {
+      console.log('invalid');
+      this.message.add({
+        severity: 'error',
+        summary: 'Seleccione una viga para generar el QR',
+        detail: '',
+        life: 5000,
+      });
+      return;
+    } else{
       let vigas = this.form.value;
       this.desViga = 
       "Clave de la viga: " + vigas.ClvViga + 
@@ -134,7 +142,7 @@ export class InformacionComponent implements OnInit {
       this.router.navigate([
         '/codigo-qr',
       ]);
-
+    }
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { HttpService } from 'src/app/services/http.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { REGEX_EMAIL } from '../../utils/regular-expressions.utils';
@@ -15,11 +16,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpService,
+    private message: MessageService,
     private loading: LoadingService
   ) {
     this.form = this.formBuilder.group({
-      NumEmpleado: [1],
-      password: ['Martin', [Validators.required]],
+      NumEmpleado: [],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -29,6 +31,12 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.form.updateValueAndValidity();
+      this.message.add({
+        severity: 'error',
+        summary: 'Ingrese todos los campos',
+        detail: '',
+        life: 5000,
+      });
       return;
     } else {
       this.loading.show();

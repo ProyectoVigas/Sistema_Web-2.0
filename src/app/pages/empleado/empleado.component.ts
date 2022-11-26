@@ -24,10 +24,10 @@ export class EmpleadoComponent implements OnInit {
     private loading: LoadingService) { 
     this.form = this.formBuilder.group({
       NumEmpleado: [0, Validators.required],
-      NomEmpleado: ['José', [Validators.required, Validators.pattern(REGEX_PHONE)] ],
-      Apaterno: ['Pérez', Validators.required],
-      Amaterno: ['Lugo', Validators.required],
-      Puesto: ['Supervisor', Validators.required]
+      NomEmpleado: ['', [Validators.required, Validators.pattern(REGEX_PHONE)] ],
+      Apaterno: ['', Validators.required],
+      Amaterno: ['', Validators.required],
+      Puesto: ['', Validators.required]
     });
   }
 
