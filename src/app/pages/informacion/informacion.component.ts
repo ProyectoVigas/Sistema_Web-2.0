@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import User from 'src/app/models/user.model';
 import Viga from 'src/app/models/viga.model';
@@ -17,6 +18,8 @@ export class InformacionComponent implements OnInit {
   clvObra: number = 0;
   user: User = {};
   viga: Viga = {};
+  isDisabled = false;
+  desViga: string = '';
 
   combos: any = {
     obras: []
@@ -26,10 +29,11 @@ export class InformacionComponent implements OnInit {
     private http: HttpService,
     private auth: AuthService,
     private message: MessageService,
-    private loading: LoadingService) {
+    private loading: LoadingService,
+    private router: Router) {
     this.form = this.formBuilder.group({
       clvObra: [0, Validators.required],
-      ClvViga: [1, Validators.required],
+      ClvViga: [0, Validators.required],
       LargoViga: [0, Validators.required],
       PesoViga: [0, Validators.required],
       Material: ['', Validators.required],
@@ -62,7 +66,7 @@ export class InformacionComponent implements OnInit {
   BuscarViga(){
       this.loading.show();
       let vigas = this.form.value;
-
+      this.clvObra = vigas.ClvViga;
     this.http.get('Viga/GetById?ClvViga=' + vigas.ClvViga).then(res => {
       console.log(res);
       if (res && !res.error) {
@@ -71,6 +75,7 @@ export class InformacionComponent implements OnInit {
         this.form.controls['Material'].setValue(res.material);
         this.form.controls['PesoViga'].setValue(res.pesoViga);
         this.form.controls['LargoViga'].setValue(res.largoViga);
+        this.isDisabled = true;
       }else{
         this.form.reset();
         this.form.controls['ClvViga'].setValue(vigas.ClvViga);
@@ -87,7 +92,7 @@ export class InformacionComponent implements OnInit {
 
   }
   GuardarViga(){
-    
+    console.log(this.form);
     if (this.form.invalid) {
       console.log('invalid');
       this.message.add({
@@ -114,6 +119,22 @@ export class InformacionComponent implements OnInit {
       });
     });
   }
+  }
+
+  SendQR(){
+      let vigas = this.form.value;
+      this.desViga = 
+      "Clave de la viga: " + vigas.ClvViga + 
+      " Largo (mts): " + vigas.LargoViga + 
+      " Peso (Kg): " + vigas.PesoViga + 
+      " Material: " + vigas.Material +
+      " Fecha de Registro: " + vigas.FechaViga;
+
+      localStorage.setItem('Viga', this.desViga);
+      this.router.navigate([
+        '/codigo-qr',
+      ]);
+
   }
 
 }
