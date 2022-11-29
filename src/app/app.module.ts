@@ -21,7 +21,7 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {InputTextModule} from 'primeng/inputtext';
 
@@ -57,7 +57,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
     ToastModule,
     DynamicDialogModule,
     ButtonModule,
-    //MatProgressSpinnerModule,
+    MatProgressSpinnerModule,
     InputTextModule,
     ProgressSpinnerModule,
     DropdownModule,
