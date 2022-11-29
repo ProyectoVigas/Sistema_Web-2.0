@@ -108,13 +108,14 @@ export class InformacionComponent implements OnInit {
     this.viga.NumEmpleado = this.user.NumEmpleado;
     this.http.put('Viga', this.viga).then((res) => {
       this.loading.close();
-      this.form.reset();
+      // this.form.reset();
       this.message.add({
         severity: 'success',
         summary: 'Viga guardada correctamente!!',
         detail: '',
         life: 5000,
       });
+      this.SendQR();
     });
   }
   }
