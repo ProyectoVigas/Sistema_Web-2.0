@@ -89,7 +89,7 @@ export class InformacionComponent implements OnInit {
     });
 
   }
-  GuardarViga(){
+  GuardarViga() {
     console.log(this.form);
     if (this.form.invalid) {
       console.log('invalid');
@@ -100,24 +100,34 @@ export class InformacionComponent implements OnInit {
         life: 5000,
       });
       return;
-    } else{
+    } else {
       this.loading.show();
       let vigas = this.form.value;
-    this.user = this.auth.getUser();
-    this.viga = vigas;
-    this.viga.NumEmpleado = this.user.NumEmpleado;
-    this.http.put('Viga', this.viga).then((res) => {
-      this.loading.close();
-      // this.form.reset();
+      this.user = this.auth.getUser();
+      this.viga = vigas;
+      this.viga.NumEmpleado = this.user.NumEmpleado;
+      this.http.put('Viga', this.viga).then((res) => {
+        this.loading.close();
+        if (res && !res.error) {
+        // this.form.reset();
+        this.message.add({
+          severity: 'success',
+          summary: 'Viga guardada correctamente!!',
+          detail: '',
+          life: 5000,
+        });
+        this.SendQR();
+      }
+    else{
       this.message.add({
-        severity: 'success',
-        summary: 'Viga guardada correctamente!!',
+        severity: 'info',
+        summary: res.message,
         detail: '',
         life: 5000,
       });
-      this.SendQR();
-    });
-  }
+    }
+      });
+    }
   }
 
   SendQR(){
