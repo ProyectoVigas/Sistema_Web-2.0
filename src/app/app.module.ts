@@ -21,14 +21,16 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+//import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { ButtonModule } from 'primeng/button';
 import { LoadingComponent } from './pages/utils/loading/loading.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ListadoComponent } from './pages/listado/listado.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     EmpleadoComponent,
     CodigoQRComponent,
     LoadingComponent,
+    ListadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { SkeletonModule } from 'primeng/skeleton';
     ToastModule,
     DynamicDialogModule,
     ButtonModule,
-    MatProgressSpinnerModule,
+    //MatProgressSpinnerModule,
+    InputTextModule,
     ProgressSpinnerModule,
     DropdownModule,
     TableModule,

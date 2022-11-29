@@ -8,6 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ObraComponent } from './pages/obra/obra.component';
 import { EmpleadoComponent } from './pages/empleado/empleado.component';
 import { CodigoQRComponent } from './pages/codigo-qr/codigo-qr.component';
+import { ListadoComponent } from './pages/listado/listado.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: "consultas", component: ConsultasComponent},
   { path: "obra", component: ObraComponent},
   { path: "empleado", component: EmpleadoComponent },
-  { path: "codigo-qr", component: CodigoQRComponent }
+  { path: "codigo-qr", component: CodigoQRComponent },
+  { path: "listado", component: ListadoComponent}
 
 ];
 
